@@ -1,9 +1,24 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+/// <summary>
+/// Unit tests for the TakingTurnsQueue class.
+/// 
+/// These tests verify the correct behavior of the TakingTurnsQueue implementation, including:
+/// - Handling of finite and infinite turns for people in the queue
+/// - Adding people to the queue at initialization and during execution
+/// - Correct order of people returned by GetNextPerson
+/// - Proper exception handling when the queue is empty
+/// 
+/// Each test method includes a scenario description, expected result, and a place to record defects found during testing.
+/// </summary>
+
 // TODO Problem 1 - Run test cases and record any defects the test code finds in the comment above the test method.
 // DO NOT MODIFY THE CODE IN THE TESTS in this file, just the comments above the tests. 
 // Fix the code being tested to match requirements and make all tests pass. 
 
+/// <summary>
+/// Contains test cases for various scenarios involving the TakingTurnsQueue.
+/// </summary>
 [TestClass]
 public class TakingTurnsQueueTests
 {

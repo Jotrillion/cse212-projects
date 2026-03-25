@@ -1,7 +1,22 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+/// <summary>
+/// Unit tests for the PriorityQueue class.
+/// 
+/// These tests verify the correct behavior of the PriorityQueue implementation, including:
+/// - Enqueueing items with priorities
+/// - Dequeueing the highest priority item (with FIFO for ties)
+/// - Exception handling for empty queue
+/// - ToString output correctness
+/// 
+/// Each test method includes a scenario description, expected result, and a place to record defects found during testing.
+/// </summary>
+
 // TODO Problem 2 - Write and run test cases and fix the code to match requirements.
 
+/// <summary>
+/// Contains test cases for various scenarios involving the PriorityQueue.
+/// </summary>
 [TestClass]
 public class PriorityQueueTests
 {
