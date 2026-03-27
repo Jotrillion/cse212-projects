@@ -23,7 +23,7 @@ public class PriorityQueueTests
     [TestMethod]
     // Scenario: Enqueue adds to the back and Dequeue removes highest priority item.
     // Expected Result: Items are dequeued in order of highest priority first.
-    // Defect(s) Found: 
+    // Defect(s) Found: Test passed. Items are dequeued in order of highest priority first as required.
     public void TestPriorityQueue_EnqueueAndDequeueHighestPriority()
     {
         var pq = new PriorityQueue();
@@ -38,7 +38,7 @@ public class PriorityQueueTests
     [TestMethod]
     // Scenario: If multiple items have the same highest priority, the one closest to the front is removed (FIFO).
     // Expected Result: First-in, first-out for ties.
-    // Defect(s) Found: 
+    // Defect(s) Found: Test passed. FIFO order is maintained for items with the same highest priority.
     public void TestPriorityQueue_FIFOTieBreaker()
     {
         var pq = new PriorityQueue();
@@ -53,7 +53,7 @@ public class PriorityQueueTests
     [TestMethod]
     // Scenario: Dequeue throws InvalidOperationException with correct message if the queue is empty.
     // Expected Result: Exception thrown with message "The queue is empty."
-    // Defect(s) Found: 
+    // Defect(s) Found: Test passed. Exception is thrown with the correct message when the queue is empty.
     public void TestPriorityQueue_EmptyDequeueThrows()
     {
         var pq = new PriorityQueue();
@@ -79,7 +79,7 @@ public class PriorityQueueTests
     [TestMethod]
     // Scenario: Enqueue multiple items with different priorities and check ToString for order.
     // Expected Result: ToString should show all items in enqueue order.
-    // Defect(s) Found: 
+    // Defect(s) Found: Test passed. ToString output contains all items in enqueue order as expected.
     public void TestPriorityQueue_ToStringOrder()
     {
         var pq = new PriorityQueue();
