@@ -21,9 +21,30 @@ public static class SetsAndMaps
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
     public static string[] FindPairs(string[] words)
     {
-        // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        var set = new HashSet<string>(words);
+        var result = new List<string>();
+        var used = new HashSet<string>();
+        /// <summary>
+        /// Finds all pairs of words that are reverses of each other (e.g., "ab" and "ba").
+        /// </summary>
+        /// <param name="words">Array of input words.</param>
+        /// <returns>Array of string pairs in the format "ba & ab".</returns>
+        foreach (var word in words)
+        {
+            if (word[0] == word[1]) continue; // skip words like "aa"
+            var reversed = new string(new[] { word[1], word[0] });
+            if (set.Contains(reversed) && !used.Contains(word) && !used.Contains(reversed))
+            {
+                result.Add($"{word} & {reversed}");
+                used.Add(word);
+                used.Add(reversed);
+            }
+        }
+        return result.ToArray();
     }
+
+    // TODO Problem 1 - ADD YOUR CODE HERE
+
 
     /// <summary>
     /// Read a census file and summarize the degrees (education)
@@ -38,13 +59,28 @@ public static class SetsAndMaps
     /// <returns>fixed array of divisors</returns>
     public static Dictionary<string, int> SummarizeDegrees(string filename)
     {
+        /// <summary>
+        /// Reads a census file and summarizes the count of each degree type.
+        /// </summary>
+        /// <param name="filename">Path to the census file.</param>
+        /// <returns>Dictionary mapping degree names to their counts.</returns>
         var degrees = new Dictionary<string, int>();
         foreach (var line in File.ReadLines(filename))
         {
             var fields = line.Split(",");
-            // TODO Problem 2 - ADD YOUR CODE HERE
+            if (fields.Length > 3)
+            {
+                string degree = fields[3];
+                if (degrees.ContainsKey(degree))
+                {
+                    degrees[degree]++;
+                }
+                else
+                {
+                    degrees[degree] = 1;
+                }
+            }
         }
-
         return degrees;
     }
 
@@ -66,24 +102,63 @@ public static class SetsAndMaps
     /// </summary>
     public static bool IsAnagram(string word1, string word2)
     {
-        // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
-    }
+        // Remove spaces and convert to lowercase
+        word1 = word1.Replace(" ", "").ToLower();
+        word2 = word2.Replace(" ", "").ToLower();
+        /// <summary>
+        /// Determines if two words are anagrams, ignoring case and spaces.
+        /// </summary>
+        /// <param name="word1">First word.</param>
+        /// <param name="word2">Second word.</param>
+        /// <returns>True if the words are anagrams; otherwise, false.</returns>
+        if (word1.Length != word2.Length)
+            return false;
 
+        var dict1 = new Dictionary<char, int>();
+        var dict2 = new Dictionary<char, int>();
+
+        foreach (var c in word1)
+        {
+            if (dict1.ContainsKey(c))
+                dict1[c]++;
+            else
+                dict1[c] = 1;
+        }
+
+        foreach (var c in word2)
+        {
+            if (dict2.ContainsKey(c))
+                dict2[c]++;
+            else
+                dict2[c] = 1;
+        }
+
+        if (dict1.Count != dict2.Count)
+            return false;
+
+        foreach (var kvp in dict1)
+        {
+            if (!dict2.ContainsKey(kvp.Key) || dict2[kvp.Key] != kvp.Value)
+                return false;
+        }
+
+        return true;
+    }
     /// <summary>
     /// This function will read JSON (Javascript Object Notation) data from the 
     /// United States Geological Service (USGS) consisting of earthquake data.
     /// The data will include all earthquakes in the current day.
     /// 
     /// JSON data is organized into a dictionary. After reading the data using
-    /// the built-in HTTP client library, this function will return a list of all
-    /// earthquake locations ('place' attribute) and magnitudes ('mag' attribute).
-    /// Additional information about the format of the JSON data can be found 
-    /// at this website:  
-    /// 
-    /// https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
-    /// 
+    /// <summary>
+    /// Retrieves a summary of all earthquakes that occurred today from the USGS GeoJSON feed.
+    /// Each entry contains the place and magnitude of an earthquake.
+    /// Uses the built-in HTTP client library to fetch and parse the data.
+    /// More info: https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
     /// </summary>
+    /// <returns>
+    /// An array of strings, each describing an earthquake's location and magnitude (e.g., "Place - Mag 2.50").
+    /// </returns>
     public static string[] EarthquakeDailySummary()
     {
         const string uri = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
@@ -96,11 +171,29 @@ public static class SetsAndMaps
 
         var featureCollection = JsonSerializer.Deserialize<FeatureCollection>(json, options);
 
-        // TODO Problem 5:
-        // 1. Add code in FeatureCollection.cs to describe the JSON using classes and properties 
-        // on those classes so that the call to Deserialize above works properly.
-        // 2. Add code below to create a string out each place a earthquake has happened today and its magitude.
-        // 3. Return an array of these string descriptions.
-        return [];
+        /// <summary>
+        /// Retrieves a summary of all earthquakes that occurred today from the USGS GeoJSON feed.
+        /// Each entry contains the place and magnitude of an earthquake.
+        /// Uses the built-in HTTP client library to fetch and parse the data.
+        /// More info: https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
+        /// </summary>
+        /// <returns>
+        /// An array of strings, each describing an earthquake's location and magnitude (e.g., "Place - Mag 2.50").
+        /// </returns>
+        // Check for null in case deserialization fails
+        if (featureCollection == null || featureCollection.Features == null)
+            return [];
+
+        var result = new List<string>();
+        foreach (var feature in featureCollection.Features)
+        {
+            var place = feature.Properties?.Place;
+            var mag = feature.Properties?.Mag;
+            if (!string.IsNullOrEmpty(place) && mag != null)
+            {
+                result.Add($"{place} - Mag {mag:0.00}");
+            }
+        }
+        return result.ToArray();
     }
 }
