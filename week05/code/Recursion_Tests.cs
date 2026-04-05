@@ -23,6 +23,7 @@ public class SumSquaresRecursiveTests
 [TestClass]
 public class PermutationsChooseTests
 {
+    // DEFECT: Fails due to incorrect or missing implementation in Recursion.PermutationsChoose (CollectionAssert.AreEqual failed: different number of elements)
     [TestMethod]
     public void PermutationsChoose_3()
     {
@@ -59,6 +60,7 @@ public class PermutationsChooseTests
         CollectionAssert.AreEqual(expected, results);
     }
 
+    // DEFECT: Fails due to incorrect or missing implementation in Recursion.PermutationsChoose (CollectionAssert.AreEqual failed: different number of elements)
     [TestMethod]
     public void PermutationsChoose_2()
     {
@@ -83,6 +85,7 @@ public class PermutationsChooseTests
         CollectionAssert.AreEqual(expected, results);
     }
 
+    // DEFECT: Fails due to incorrect or missing implementation in Recursion.PermutationsChoose (CollectionAssert.AreEqual failed: different number of elements)
     [TestMethod]
     public void PermutationsChoose_1()
     {
@@ -117,6 +120,7 @@ public class CountWaysToClimbTests
         Assert.AreEqual(121415, result);
     }
 
+    // DEFECT: Fails due to timeout (inefficient or missing memoization in Recursion.CountWaysToClimb)
     [TestMethod, Timeout(5000)]
     public void CountWaysToClimb_Large()
     {
@@ -128,6 +132,7 @@ public class CountWaysToClimbTests
 [TestClass]
 public class WildcardBinaryTests
 {
+    // DEFECT: Fails due to incorrect or missing implementation in Recursion.WildcardBinary (CollectionAssert.AreEqual failed: different number of elements)
     [TestMethod]
     public void WildcardBinary_6_Long()
     {
@@ -144,6 +149,7 @@ public class WildcardBinaryTests
         CollectionAssert.AreEqual(expected, results);
     }
 
+    // DEFECT: Fails due to incorrect or missing implementation in Recursion.WildcardBinary (CollectionAssert.AreEqual failed: different number of elements)
     [TestMethod]
     public void WildcardBinary_EmptyString()
     {
@@ -154,6 +160,7 @@ public class WildcardBinaryTests
         CollectionAssert.AreEqual(expected, results);
     }
 
+    // DEFECT: Fails due to incorrect or missing implementation in Recursion.WildcardBinary (CollectionAssert.AreEqual failed: different number of elements)
     [TestMethod]
     public void WildcardBinary_NoWildcards()
     {
@@ -164,6 +171,7 @@ public class WildcardBinaryTests
         CollectionAssert.AreEqual(expected, results);
     }
 
+    // DEFECT: Fails due to incorrect or missing implementation in Recursion.WildcardBinary (CollectionAssert.AreEqual failed: different number of elements)
     [TestMethod]
     public void WildcardBinary_3_Long()
     {
@@ -188,6 +196,7 @@ public class WildcardBinaryTests
 [TestClass]
 public class SolveMazeTests
 {
+    // DEFECT: Fails due to incorrect or missing implementation in Recursion.SolveMaze (CollectionAssert.AreEqual failed: different number of elements)
     [TestMethod]
     public void SolveMaze_Small()
     {
@@ -203,6 +212,7 @@ public class SolveMazeTests
         CollectionAssert.AreEqual(expected, results);
     }
 
+    // DEFECT: Fails due to incorrect or missing implementation in Recursion.SolveMaze (CollectionAssert.AreEqual failed: different number of elements)
     [TestMethod]
     public void SolveMaze_Large()
     {
