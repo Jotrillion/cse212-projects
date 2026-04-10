@@ -27,6 +27,8 @@ public class TreeInsertTests
 
 [TestClass]
 public class TreeContainsTests
+// DEFECT: The Contains method in your BinarySearchTree or Node class is not implemented or not working correctly.
+// The test expects the tree to correctly report whether it contains certain values after several inserts.
 {
     [TestMethod]
     public void TreeContains_Basic()
@@ -50,6 +52,8 @@ public class TreeContainsTests
 
 [TestClass]
 public class TreeReverseTests
+// DEFECT: The Reverse method is not implemented or not returning the correct sequence.
+// The test expects tree.Reverse() to return the elements in descending order, but the actual output is empty.
 {
     [TestMethod]
     public void TreeReverse_Basic()
@@ -69,6 +73,8 @@ public class TreeReverseTests
 
 [TestClass]
 public class TreeGetHeightTests
+// DEFECT: The GetHeight method is not implemented or always returns 0.
+// The test expects GetHeight to return the correct height of the tree after various insertions.
 {
     [TestMethod]
     public void TreeGetHeight_Basic()
@@ -91,6 +97,8 @@ public class TreeGetHeightTests
 
 [TestClass]
 public class CreateTreeFromSortedListTests
+// DEFECT: The CreateTreeFromSortedList method is not implemented or not returning a valid tree, or ToString is not implemented.
+// The tests expect Trees.CreateTreeFromSortedList to create a BST from a sorted list and for ToString and GetHeight to return correct results, but the actual output is empty.
 {
     [TestMethod]
     public void CreateTreeFromSortedList_CountBy10s()
